@@ -1,0 +1,42 @@
+{
+  "brand": {
+    "name": "Thiago Centurion Apps",
+    "tagline": "Premium mobile experiences built for speed and polish."
+  },
+  "apps": [
+    {
+      "id": "redpulse",
+      "name": "RedPulse",
+      "subtitle": "Break free from endless scrolling with intentional screen time",
+      "status": "live",
+      "badge": "New",
+      "platforms": ["iOS", "iPadOS"],
+      "accent": "#EF4444",
+      "appStoreUrl": "#",
+      "iconType": "gradient-red",
+      "highlights": [
+        "Smart usage tracking",
+        "Beautiful widgets",
+        "Privacy-first design",
+        "No data collection"
+      ]
+    },
+    {
+      "id": "nextapp",
+      "name": "Next App",
+      "subtitle": "Coming soon — stay tuned for something special",
+      "status": "coming_soon",
+      "badge": "Soon",
+      "platforms": ["iOS", "iPadOS"],
+      "accent": "#8B5CF6",
+      "appStoreUrl": "#",
+      "iconType": "gradient-purple",
+      "highlights": [
+        "AI-powered features",
+        "Seamless experience",
+        "Cloud sync",
+        "Cross-platform"
+      ]
+    }
+  ]
+}
