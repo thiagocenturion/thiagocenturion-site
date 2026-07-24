@@ -4,119 +4,92 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ## Project Overview
 
-This is a static marketing website for Thiago Centurion Apps, an indie iOS/iPadOS apps brand. The site showcases current and upcoming apps with a premium "Lovable-style" design.
+Static marketing/portfolio website for Thiago Centurion Apps — seven indie iOS apps built in
+the `~/Documents/app-factory` monorepo (Sustain, Anchor, PawVet AI, GlucoLens, PouchDrop,
+RallyLog, Gridline). Premium Apple "liquid glass" dark aesthetic: aurora gradients, glass cards,
+scroll-driven reveals, and a hand-built CSS iPhone mockup per app.
 
 ## Architecture
 
 ### Tech Stack
-- **Pure Static HTML/CSS/JS**: No build step required
-- **Tailwind CSS**: Loaded via CDN for zero-config styling
-- **GitHub Pages**: Free hosting from `/docs` folder
-- **Data-Driven**: All app content comes from `docs/apps.json`
+- **Pure static HTML/CSS/JS** — no build step, no framework
+- **`docs/styles.css`** — the entire design system, hand-written (the landing page does NOT
+  use Tailwind)
+- **Legal pages** (`privacy.html`, `terms.html`) still load Tailwind via CDN for their body
+  copy, plus `styles.css` for the shared nav/background/glass chrome
+- **GitHub Pages** serves from `/docs`
+- **Data-driven**: all app content comes from `docs/apps.json`
 
 ### File Structure
 ```
-/docs                    # GitHub Pages serves from here
-  ├── index.html        # Home page (hero, featured app, apps grid, support)
-  ├── privacy.html      # Generic privacy policy for all apps
-  ├── terms.html        # Generic terms of use for all apps
-  ├── apps.json         # ⭐ Single source of truth for app data
-  ├── site.js           # Dynamic rendering, animations, tilt effects
-  └── assets/           # Optional static assets
+/docs
+  ├── index.html      # Landing page shell (sections + containers; content rendered by site.js)
+  ├── styles.css      # ⭐ Design system: tokens, glass, nav, hero, showcases, phone mocks, responsive
+  ├── site.js         # ⭐ Renders apps.json → rail/showcases/values/footer + all interactions
+  ├── apps.json       # ⭐ Single source of truth for brand + app data
+  ├── privacy.html    # Generic privacy policy (all apps)
+  ├── terms.html      # Generic terms of use (all apps)
+  └── assets/         # Optional real artwork (icons/screens/og) — see IMAGE-PROMPTS.md
 ```
+
+### apps.json schema (per app)
+`id, name, storeName, category, tagline, hook, subtitle, status (live|coming_soon), badge,
+platforms[], accent, accent2, appStoreUrl, icon, screenshot, features[{title,text}]`
+
+- `hook` is the big emotional headline of the app's showcase section; the last 2–3 words are
+  automatically gradient-highlighted.
+- `accent`/`accent2` drive the whole per-app theme (glyph, glow, chips, CTA) via CSS custom
+  properties `--a1`/`--a2` injected on the section.
+- `icon`/`screenshot` are null by default → site renders a gradient SVG glyph and a bespoke
+  CSS phone mock (see `GLYPHS` and `MOCKS` in site.js, keyed by app `id`). Setting a path
+  swaps in real artwork (see IMAGE-PROMPTS.md at repo root).
+- When an app ships: set `status: "live"` and the real `appStoreUrl` — the CTA switches to
+  "Download on the App Store" and the badge turns green. Nothing else to touch.
 
 ## Development Workflow
 
-### Local Testing
-To test locally with fetch() working:
+### Local testing
 ```bash
-cd docs
-python -m http.server 8000
-# Open http://localhost:8000
+cd docs && python3 -m http.server 8000   # then open http://localhost:8000
 ```
+`site.js` has a full embedded fallback of apps.json, so even file:// renders completely.
 
-### Updating Content
-**To add or modify apps**: Edit `docs/apps.json` only. The site automatically renders from this file.
-
-**To update brand name/tagline**: Edit `brand` section in `docs/apps.json`.
-
-**To update contact email**: Search and replace `support@yourdomain.com` in:
-- `docs/index.html`
-- `docs/privacy.html`
-- `docs/terms.html`
-
-### Design Patterns
-
-**Glass Card Components**: Use `.glass-card` class for the signature glassmorphism effect (backdrop blur, subtle borders).
-
-**Gradient Accents**: Each app has an `accent` color in JSON that drives gradient themes.
-
-**Reveal Animations**: Elements with `.reveal` class fade in on scroll via IntersectionObserver.
-
-**Tilt Effect**: The featured app card has a subtle 3D tilt on hover (only on that card, not globally).
+### Adding an app
+1. Add the object to `docs/apps.json` (all fields above).
+2. Add an SVG glyph and a mock template in `site.js` (`GLYPHS[id]`, `MOCKS[id]`) — otherwise
+   it falls back to the Anchor glyph and an empty phone screen.
+3. Commit and push (GitHub Pages auto-deploys).
 
 ## Important Constraints
 
+### Performance (hard-won — do not regress)
+- **No `backdrop-filter` on repeated cards.** True blur is reserved for the few chrome
+  surfaces (`.nav.glass`, `.support-panel.glass`, `.mobile-menu`). Cards use translucent
+  layered backgrounds (`.glass` is blur-free). Dozens of backdrop-filter surfaces jank
+  scrolling on phones.
+- **No `filter: blur()` on large elements.** The aurora orbs are "pre-blurred" via soft
+  radial-gradient falloff instead. Never reintroduce 500px blurred divs.
+- All scroll work goes through one rAF-throttled listener; reveals/counters use
+  IntersectionObserver (with an `.top < 0` catch-up so fast scrolling can't skip them).
+- `prefers-reduced-motion` disables every animation; keep new effects behind it.
+
 ### Maintainability
-- **Never hardcode app-specific content in HTML**: Always pull from `apps.json`
-- The home page must scale to 10+ apps without layout issues
-- Keep code readable and well-structured for future maintainability
+- **Never hardcode app content in HTML** — everything renders from `apps.json`.
+- New showcase/mock markup must escape data with the `esc()` helper in site.js.
+- Keep the layout scaling to 10+ apps (showcases are generated in a loop).
+
+### Mobile
+- Test at 375px: burger menu, full-width CTAs, stacked showcases (copy above phone),
+  `svh` units for the hero, safe-area insets on nav/footer.
+- iOS quirks already handled: `viewport-fit=cover`, `-webkit-backdrop-filter`,
+  no `background-attachment: fixed`.
 
 ### Legal Pages
-- Privacy Policy and Terms of Use are **generic for all apps** under the brand
-- They cover future apps with AI features, subscriptions, analytics, etc.
-- Update effective dates when making changes to legal pages
-
-### GitHub Pages Deployment
-1. Repository Settings → Pages
-2. Source: Deploy from branch
-3. Branch: `main` + Folder: `/docs`
-4. Site URL: `https://username.github.io/repo-name/`
-
-## Key Features
-
-### Dynamic App Rendering
-`site.js` fetches `apps.json` and dynamically generates:
-- Featured app showcase (first live app, or first app in list)
-- Apps grid with status badges (Live / Coming Soon)
-- Platform tags (iOS, iPadOS)
-- Highlight bullets
-- CTA buttons (App Store URLs)
-
-### Status-Based UI
-Apps can have `status: "live"` or `status: "coming_soon"`:
-- Live apps: Green badge, "View on App Store" button
-- Coming soon: Purple badge, "App Store (soon)" button with # placeholder
-
-### Fallback for Local Testing
-If `fetch('apps.json')` fails (e.g., opening index.html directly), site.js uses a minimal fallback to prevent errors.
-
-## Common Tasks
-
-**Add a new app**:
-1. Edit `docs/apps.json`
-2. Add new app object with all required fields
-3. Commit and push (auto-deploys via GitHub Pages)
-
-**Change brand name**:
-1. Edit `docs/apps.json` → `brand.name`
-
-**Update legal docs**:
-1. Edit `docs/privacy.html` or `docs/terms.html`
-2. Update effective date at top
-3. Notify users of changes if significant
-
-**Test animations locally**:
-1. Run local server: `cd docs && python -m http.server 8000`
-2. Scroll to see reveal animations
-3. Hover featured card to see tilt effect
+- Generic for all apps; cover AI features, subscriptions, analytics, skin-scan/face data.
+- Update the effective date at the top when changing them.
 
 ## Style Guidelines
-
-- **Dark theme**: Background `#0a0a0a`, text `#fafafa`
-- **Glass cards**: `rgba(30,30,30,0.4)` with backdrop blur
-- **Gradient glows**: Background blobs with blur filters
-- **Noise texture**: SVG noise overlay for subtle texture
-- **Colors**: Purple and red gradient accents (customizable per app)
-- **Typography**: System fonts, large headings, good spacing
-- **Responsive**: Mobile-first, works on all screen sizes
+- Dark theme only: bg `#07070b`, text `#f5f4f7`, tokens live in `:root` of styles.css.
+- Brand gradient: violet `#a78bfa` → rose `#fb7185` → sky `#38bdf8`.
+- Per-app accents come from apps.json, never hardcoded in CSS.
+- Type is the system stack (SF Pro on Apple) with Inter as the web fallback.

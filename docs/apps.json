@@ -1,41 +1,252 @@
 {
   "brand": {
     "name": "Thiago Centurion Apps",
-    "tagline": "Premium mobile experiences built for speed and polish."
+    "tagline": "Deeply-crafted iOS apps for the problems you thought you just had to live with."
   },
   "apps": [
     {
-      "id": "redpulse",
-      "name": "RedPulse",
-      "subtitle": "Break free from endless scrolling with intentional screen time",
-      "status": "live",
-      "badge": "New",
-      "platforms": ["iOS", "iPadOS"],
-      "accent": "#EF4444",
+      "id": "sustain",
+      "name": "Sustain",
+      "storeName": "Sustain: GLP-1 Tracker & Coach",
+      "category": "Health & Fitness",
+      "tagline": "Lose the weight. Keep the muscle.",
+      "hook": "On a GLP-1, up to 40% of what you lose can be muscle.",
+      "subtitle": "The companion that protects it: protein-first meal scans, shot tracking, side-effect coaching, and the only taper plan for life after the medication.",
+      "status": "coming_soon",
+      "badge": "Coming soon",
+      "platforms": ["iOS", "Widgets", "Siri", "HealthKit"],
+      "accent": "#FF7A66",
+      "accent2": "#F7C873",
       "appStoreUrl": "#",
-      "iconType": "gradient-red",
-      "highlights": [
-        "Smart usage tracking",
-        "Beautiful widgets",
-        "Privacy-first design",
-        "No data collection"
+      "icon": "assets/icons/sustain.png",
+      "screenshot": "assets/screens/sustain.png",
+      "features": [
+        {
+          "title": "Protein-first meal scans",
+          "text": "Snap any meal — even a tiny one — and get protein math in seconds, plus the smallest fix to reach your daily floor."
+        },
+        {
+          "title": "Shot tracker with site rotation",
+          "text": "A body map that remembers where you injected and suggests the next site. Reminders on your schedule."
+        },
+        {
+          "title": "Side-effect coach",
+          "text": "Log nausea or fatigue in one tap and see your personal pattern by day-after-shot, with evidence-based tips."
+        },
+        {
+          "title": "Taper Mode",
+          "text": "The only structured off-ramp: adjusted targets and coaching for keeping the results after the medication."
+        }
       ]
     },
     {
-      "id": "nextapp",
-      "name": "Next App",
-      "subtitle": "Coming soon — stay tuned for something special",
+      "id": "anchor",
+      "name": "Anchor",
+      "storeName": "Anchor: ADHD Body Double",
+      "category": "Productivity",
+      "tagline": "A voice that sits with you while you do the thing.",
+      "hook": "You know what you need to do. Starting is the hard part.",
+      "subtitle": "A body double on demand: tell it what you're avoiding, and a calm voice gives you one tiny first step — then stays with you until it's done.",
       "status": "coming_soon",
-      "badge": "Soon",
-      "platforms": ["iOS", "iPadOS"],
-      "accent": "#8B5CF6",
+      "badge": "Coming soon",
+      "platforms": ["iOS", "Widgets", "Siri", "Live Activity"],
+      "accent": "#F5B971",
+      "accent2": "#B9B4D9",
       "appStoreUrl": "#",
-      "iconType": "gradient-purple",
-      "highlights": [
-        "AI-powered features",
-        "Seamless experience",
-        "Cloud sync",
-        "Cross-platform"
+      "icon": "assets/icons/anchor.png",
+      "screenshot": null,
+      "features": [
+        {
+          "title": "Body doubling on demand",
+          "text": "No scheduling, no video calls, no strangers. A warm voice whenever you're stuck — even with the screen locked."
+        },
+        {
+          "title": "Tasks shrunk until startable",
+          "text": "\"Just stand in the kitchen holding a trash bag.\" Stuck? Say so. The step gets smaller. It always gets smaller."
+        },
+        {
+          "title": "No streaks. Ever.",
+          "text": "No guilt mechanics, no red badges, no task graveyard. A bad day costs you nothing."
+        },
+        {
+          "title": "Unstick from the Lock Screen",
+          "text": "An \"I can't start\" Siri shortcut and a Lock-Screen button for frozen moments. Sessions live in your Dynamic Island."
+        }
+      ]
+    },
+    {
+      "id": "pawvet",
+      "name": "PawVet AI",
+      "storeName": "PawVet AI: Pet Health Scanner",
+      "category": "Lifestyle",
+      "tagline": "Is it serious? Know in seconds.",
+      "hook": "It's 11pm and your dog is scratching a red patch. Google says everything. Your vet opens at 8.",
+      "subtitle": "A calm, breed-aware answer in seconds: what it looks like, how urgent it is, and exactly what to do tonight. Guidance, not diagnosis.",
+      "status": "coming_soon",
+      "badge": "Coming soon",
+      "platforms": ["iOS", "Widgets", "Siri", "Share Sheet"],
+      "accent": "#2DD4BF",
+      "accent2": "#5EEAD4",
+      "appStoreUrl": "#",
+      "icon": "assets/icons/pawvet.png",
+      "screenshot": null,
+      "features": [
+        {
+          "title": "Point. Scan. Breathe.",
+          "text": "Skin, eyes and ears, poop, wounds, food labels, or something they just ate — read against your pet's breed, age, and history."
+        },
+        {
+          "title": "\"They ate something\" checks, 24/7",
+          "text": "Chocolate, grapes, plants, and more — with a clear urgency level: monitor at home, call your vet, or emergency now."
+        },
+        {
+          "title": "A timeline that spots patterns",
+          "text": "Every check remembered. Recurring issues surfaced before they become big ones."
+        },
+        {
+          "title": "Vet Visit Briefs",
+          "text": "Your pet's history as a clean PDF, so you walk into the clinic prepared."
+        }
+      ]
+    },
+    {
+      "id": "glucolens",
+      "name": "GlucoLens",
+      "storeName": "GlucoLens: CGM Insights & AI",
+      "category": "Health & Fitness",
+      "tagline": "Know exactly what spiked you.",
+      "hook": "You bought the sensor. Now get the answers.",
+      "subtitle": "GlucoLens reads the glucose data your CGM writes to Apple Health and delivers a nightly Glucose Autopsy: your spikers, your heroes, your next experiment.",
+      "status": "coming_soon",
+      "badge": "Coming soon",
+      "platforms": ["iOS", "Widgets", "HealthKit"],
+      "accent": "#818CF8",
+      "accent2": "#86EFAC",
+      "appStoreUrl": "#",
+      "icon": "assets/icons/glucolens.png",
+      "screenshot": null,
+      "features": [
+        {
+          "title": "The Nightly Glucose Autopsy",
+          "text": "Every evening: which meal spiked you (named, with the number), what flattened the curve, and one experiment for tomorrow."
+        },
+        {
+          "title": "Your whole day, one curve",
+          "text": "Meals pinned right on the line — snap a photo and the pin drops at its timestamp. Touch the curve to magnify any moment."
+        },
+        {
+          "title": "Meet your spikers",
+          "text": "The foods that actually move you — and the \"surprisingly fine\" list of expected spikers that weren't."
+        },
+        {
+          "title": "Experiments with verdicts",
+          "text": "Meal order, a 10-minute walk, an earlier dinner — two days, two curves, an honest verdict: \"cut your spike 41%.\""
+        }
+      ]
+    },
+    {
+      "id": "pouchdrop",
+      "name": "PouchDrop",
+      "storeName": "PouchDrop — Quit Nicotine",
+      "category": "Health & Fitness",
+      "tagline": "Cravings die in 3 minutes. We play those minutes with you.",
+      "hook": "You've done the math on the cans. Now do something about it.",
+      "subtitle": "One-tap logging, a taper that fits your life, your body's recovery ticking live — and a voice coach for the 3 minutes that matter. No lectures. No shame.",
+      "status": "coming_soon",
+      "badge": "Coming soon",
+      "platforms": ["iOS", "Widgets", "Lock Screen"],
+      "accent": "#5EEAD4",
+      "accent2": "#F5D06F",
+      "appStoreUrl": "#",
+      "icon": "assets/icons/pouchdrop.png",
+      "screenshot": null,
+      "features": [
+        {
+          "title": "The 3-minute wave",
+          "text": "Cravings crest at 90 seconds and die at three minutes. Hold the panic button and the coach talks you through — win logged."
+        },
+        {
+          "title": "A taper on your schedule",
+          "text": "Pick the date of your last can and the daily target walks itself down. Slips log honestly and never nuke your clean days."
+        },
+        {
+          "title": "Your body, healing live",
+          "text": "20 minutes to a calmer heart rate, 72 hours to nicotine-free, 1 month to rebalanced dopamine — gold-stamped as you pass each one."
+        },
+        {
+          "title": "The money comes home",
+          "text": "Your can price × your habit = your counter. Watch it climb in real time."
+        }
+      ]
+    },
+    {
+      "id": "rallylog",
+      "name": "RallyLog",
+      "storeName": "RallyLog: Pickleball & Padel",
+      "category": "Sports",
+      "tagline": "You know you lost. RallyLog knows why.",
+      "hook": "Log a match in 30 seconds. Get a scouting report on YOUR game.",
+      "subtitle": "AI scouting reports, drills that fix your real leaks, and pre-match briefs on every recurring opponent. Built for players who play to improve.",
+      "status": "coming_soon",
+      "badge": "Coming soon",
+      "platforms": ["iOS", "Widgets", "Live Activity"],
+      "accent": "#A3E635",
+      "accent2": "#38BDF8",
+      "appStoreUrl": "#",
+      "icon": "assets/icons/rallylog.png",
+      "screenshot": null,
+      "features": [
+        {
+          "title": "Your personal scout",
+          "text": "After every match: which patterns cost you points, what's working, and the ONE five-minute drill to run before next game."
+        },
+        {
+          "title": "A rating you can watch climb",
+          "text": "An honest estimate built from every match you log — with a trajectory chart and projection. Track your official DUPR alongside it."
+        },
+        {
+          "title": "Never forget how to beat Ana",
+          "text": "Every recurring opponent gets a card: head-to-head record, what worked in your wins, and a pre-match brief the morning you play them."
+        },
+        {
+          "title": "Court Mode",
+          "text": "Keep score on your Lock Screen and Dynamic Island — giant tap targets, +1 without unlocking, and the finished match logs itself."
+        }
+      ]
+    },
+    {
+      "id": "gridline",
+      "name": "Gridline",
+      "storeName": "Gridline: Daily Logic Puzzle",
+      "category": "Games",
+      "tagline": "The daily logic club with taste.",
+      "hook": "Three tiny logic puzzles a day — the same three for the whole world.",
+      "subtitle": "Crown, Duet, Thread: three original grid puzzles every morning, solver-verified, under 5 minutes. No ads ever, no lives, no nagging — just the snap of a clean solve and your streak. The daily is free. Forever.",
+      "status": "coming_soon",
+      "badge": "Coming soon",
+      "platforms": ["iOS", "Widgets", "Live Activity", "Lock Screen"],
+      "accent": "#C9A15A",
+      "accent2": "#7B5EA7",
+      "appStoreUrl": "#",
+      "icon": "assets/icons/gridline.png",
+      "screenshot": null,
+      "features": [
+        {
+          "title": "Three originals, every morning",
+          "text": "Crown, Duet, Thread — each generated and verified to have exactly one solution, with a difficulty curve that ramps gently from Monday to a chunky Sunday."
+        },
+        {
+          "title": "Logic that respects you",
+          "text": "Mistakes glow softly — no lives, no lockouts, no timers screaming at you. One gentle hint per puzzle teaches the technique, never the answer."
+        },
+        {
+          "title": "Same puzzles as your friends",
+          "text": "The whole world gets the same three. Share the spoiler-free card, compare your solves, and keep the flame alive — streak repair included, because life happens."
+        },
+        {
+          "title": "Gridline Club",
+          "text": "The full archive since day one, unlimited practice, Black Label hard variants, and full stats history. The daily never goes behind it."
+        }
       ]
     }
   ]

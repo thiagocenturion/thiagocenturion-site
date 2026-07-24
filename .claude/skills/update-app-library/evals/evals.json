@@ -1,0 +1,19 @@
+{
+  "skill_name": "update-app-library",
+  "evals": [
+    {
+      "id": 0,
+      "eval_name": "full-sync",
+      "prompt": "Can you update our app library website from app-factory? Add any new apps that are missing and use real icons/screenshots wherever we have them.",
+      "expected_output": "gridline added to docs/apps.json with copy mined from its app-store.md (status coming_soon), glyph + mock + FALLBACK_DATA updated in site.js, docs/assets/icons/*.png for all 7 apps, docs/assets/screens/sustain.png, icon/screenshot fields wired only for synced assets, factory-demo excluded, JSON valid.",
+      "files": []
+    },
+    {
+      "id": 1,
+      "eval_name": "freshness-check",
+      "prompt": "Is our website's app library up to date with what's in app-factory?",
+      "expected_output": "A report that gridline exists in app-factory but not on the site, that real assets (icons for all apps, a sustain screenshot) are available but not wired, and that factory-demo is correctly excluded. Since this is a question, a clear report is the deliverable; proceeding to sync is acceptable but not required.",
+      "files": []
+    }
+  ]
+}
